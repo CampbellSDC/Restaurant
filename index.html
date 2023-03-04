@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/buttons.css">
+    <link rel="stylesheet" href="/CSS/emojis.css">
     <title>Document</title>
 </head>
 <body>
@@ -19,8 +20,30 @@
         <section id="hero-container">
             
                 <!-- MENU ITEMS GO HERE FROM JS -->
-            </div>
+            
+            <div id="your-order" class="your-order hidden">
+                <h2>Your order</h2>
 
+                <div id="ordered-items">
+                    <div id="item">
+                        <ul>
+                            <li>Item here<button id="remove-btn">remove</button></li>
+                            <li>Item here<button id="remove-btn">remove</button></li>
+                            <li>Item here<button id="remove-btn">remove</button></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div id="total-price">
+                    <h2>Total price:</h2>
+                    <p id="total"></p>
+
+                </div>
+
+                <button id="complete-btn">Complete order</button>
+
+            </div>
         </section>
 
     </main>

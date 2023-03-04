@@ -14,7 +14,7 @@ body {
 }
 
 .main-container {
-    max-width: 600px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -32,8 +32,45 @@ body {
     font-weight: 300;
 }
 
-#menu-item-container {
+.menu-item-container {
+    display: flex;
+    max-width: 90%;
+    margin: auto;
+    justify-content: space-between;
+
+}
+
+.emoji-item-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px auto;
+    border-bottom: 1px solid lightgray;
+    padding: 1.5rem 0;
+    line-height: 1.8;
+}
+
+
+
+.item-text {
+    margin-left: 2rem;
+}
+
+.your-order {
+    
+    max-width: 90%;
+    margin: auto;
+}
+.your-order > h2{
+    text-align: center;
+
+}
+
+#item {
     display: flex;
 
 }
 
+#ordered-items{
+    border-bottom: 2px solid black;
+}
