@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* TEXT */
+
+body {
+    font-family: 'Smythe', cursive;
+}
+
+.main-container {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: auto;
+    border: 1px solid red;
+}
+
+.main-header {
+    padding: 2rem;
+    background: url('/Assets/burger.jpg');
+    background-size: cover;
+    background-position:right;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-weight: 300;
+}
+
+#menu-item-container {
+    display: flex;
+
+}
+
