@@ -2,11 +2,64 @@ import { menuArray } from "./data.js";
 
 const menuItemContainer = document.getElementById('hero-container')
 const addItemBtn = document.getElementById('add-btn')
+const yourOrderSection = document.getElementById('your-order')
 
+let itemsOrdered = []
+
+document.addEventListener('click', function(e){
+   if(e.target.dataset.button === 'Pizza'){
+       handlePizzaClick(e.target.dataset.button)
+   }
+   else if(e.target.dataset.button === 'Hamburger'){
+       handleHamburgerClick(e.target.dataset.button)
+   }
+   else if(e.target.dataset.button === 'Beer'){
+       handleBeerClick(e.target.dataset.button)
+   }
+
+})
+
+
+
+function handlePizzaClick(pizzas){
+    
+    menuArray.forEach((element) => {
+        if(element.name === pizzas){
+            itemsOrdered.push(element)
+            
+        }
+        
+    }
+    )
+
+    console.log(itemsOrdered)}
+
+function handleHamburgerClick(hamburgers){
+    
+    menuArray.forEach((element) => {
+        
+        if(element.name === hamburgers){
+            itemsOrdered.push(element)
+
+        }
+        
+    })
+    console.log(itemsOrdered)
+}
+
+function handleBeerClick(beers){
+    menuArray.forEach((element) => {
+        if(element.name === beers){
+            itemsOrdered.push(element)
+        }
+    })
+    console.log(itemsOrdered)
+}
 
 function render(){
 
     menuArray.forEach(function(item){
+        
         menuItemContainer.innerHTML += `
         <div class="menu-item-container">
 
@@ -21,7 +74,7 @@ function render(){
                     <p id="pizza-toppings">${item.ingredients}</p>
                     <h4 id="pizza-price">$${item.price}</h4>     
                 </div>
-                <button id="add-btn">+</button>
+                <button class="add-item-btn" data-button="${item.name}">+</button>
             </div>
 
     
@@ -36,9 +89,7 @@ function render(){
 
 /* ADD ITEM BUTTON FUNCTION */
 
-// addItemBtn.addEventListener('click', () => {
 
-// })
 
 render()
 

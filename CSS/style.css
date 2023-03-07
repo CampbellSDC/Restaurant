@@ -73,4 +73,10 @@ body {
 
 #ordered-items{
     border-bottom: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden {
+    display: none;
 }
