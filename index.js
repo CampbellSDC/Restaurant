@@ -6,6 +6,8 @@ const menuItemContainer = document.getElementById('hero-container')
 const checkoutItems = document.getElementById('your-order')
 const itemNames = document.getElementById('ordered-items')
 
+const orderQuantity = {}
+
 let itemsOrdered = []
 
 
@@ -37,34 +39,63 @@ function newOrderItems(itemId) {
     const targetItem = menuArray.filter((item)=>{
         return item.id == itemId
     })[0]
+
+    if(itemsOrdered.includes(targetItem)){
+        //If order basket already contains the selected item, no need to add to basket just increment the quantity
+
+        // remove button will need to decrement this count and update totals
+            orderQuantity[targetItem.name]+=1;
+        }else{
+         //If order basket does not contain the selected item then set quantity to one and add to basket
+            orderQuantity[targetItem.name]=1;
+            itemsOrdered.push(targetItem)
+        }
     
-    itemsOrdered.push(targetItem)
+    
     renderOrder()
-    
+    console.log(orderQuantity)
 }
 
 
 function renderOrder(){
     
     let orderHtml = ''
-   
-    itemsOrdered.forEach(({name, price}) => {
-        
-       
-        orderHtml += `
-        <div id="order-line-item" >
-        <div id='item'>
-            <h2>${name}</h2>
-            <button class="remove-btn">remove</button>
-        </div>
+    let multipleItemHtml = ''
+    const item = document.getElementById('item')
 
-        <h3>$${price}</h3>
-        </div>
-        `
-    })
+    // how to append html so it doens't continue listing out order items
+    // i.e. - Pizza  X  3          $28
+
+   
+        
+        itemsOrdered.forEach(({name, price}) => {
+        
+            orderHtml += `
+            <div id="order-line-item" >
+            <div id='item'>
+                <h2>${name}</h2>
+                <button class="remove-btn">remove</button>
+            </div>
     
+            <h3>$${price}</h3>
+            </div>
+            `
+        })
+     
+    
+    
+        
+        
+
+       
+        
+    
+    
+    
+
    checkoutItems.classList.remove('hidden')
     itemNames.innerHTML = orderHtml
+    console.log(itemsOrdered)
     getTotalPrice()
 }   
 
@@ -74,7 +105,7 @@ function getTotalPrice()  {
     let total = document.getElementById('total')
     const sum = itemsOrdered.reduce((price, total)=> price + total.price, 0 )
 
-    total.innerHTML =`
+    total.textContent =`
         $${sum}
     ` 
 
