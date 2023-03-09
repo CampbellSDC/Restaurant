@@ -12,27 +12,33 @@ let itemsOrdered = []
 
 document.addEventListener('click', function(e){
     
-   if(e.target.dataset.button){
+   if(e.target.dataset.button === '0' || e.target.dataset.button === '1' || e.target.dataset.button === '2'){
         newOrderItems(e.target.dataset.button)
+    }
+    else if(e.target.dataset.button === "removeBtn"){
+
+    }
+    else if(e.target.dataset.button === "completeOrderBtn"){
+        completeOrder()
     }
     
   
 })
 
+// COMPLETE ORDER BUTTON FUNCTION
 
+function completeOrder() {
+    console.log("You've completed your order")
+}
+
+
+//ITEMS ADDED TO ORDER
 function newOrderItems(itemId) {
     const targetItem = menuArray.filter((item)=>{
-        
-
-       return item.id == itemId
-    // if(item.name === itemId){
-    //     console.log(item)
-
-    
+        return item.id == itemId
     })[0]
     
     itemsOrdered.push(targetItem)
-    console.log(itemsOrdered)
     renderOrder()
     
 }
@@ -61,6 +67,8 @@ function renderOrder(){
     itemNames.innerHTML = orderHtml
     getTotalPrice()
 }   
+
+
 
 function getTotalPrice()  {
     let total = document.getElementById('total')
@@ -107,7 +115,7 @@ function render(){
     
 }
 
-/* ADD ITEM BUTTON FUNCTION */
+
 
 
 

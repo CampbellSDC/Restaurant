@@ -21,6 +21,7 @@ body {
     flex-direction: column;
     margin: auto;
     border: 1px solid red;
+    position: relative;
 }
 
 .main-header {
@@ -91,4 +92,58 @@ body {
 #total-price {
     display: flex;
     justify-content: space-between;
+}
+
+#complete-btn{
+    cursor: pointer;
+}
+
+/* PAYMENT MODAL */
+
+#modal-container {
+    
+    padding: 1.5rem;
+    border-radius: 3px;
+    position: absolute;
+    top 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+   
+    background: #fff;
+    border: 1px solid blue;
+    
+}
+
+#modal-container h3 {
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    margin-bottom: 2rem;
+}
+
+#payment {
+    display: flex;
+    flex-direction: column;
+}
+
+#payment input {
+    
+    border: 1px solid #757575;
+    
+}
+
+#payment button {
+    background: #16DB99;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#payment > input, 
+#payment > button {
+    margin: auto auto 20px auto;
+    width: 100%;
+    padding: 15px;
+    border-radius: 3px;
 }

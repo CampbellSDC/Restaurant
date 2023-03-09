@@ -26,7 +26,9 @@
         </section>
 
         <div id="your-order" class="checkout-order hidden">
-            <h2>Your order</h2>
+
+                <h2>Your order</h2>
+
             <div id="ordered-items">
 
                 <!-- CHECKOUT ITEMS GO HERE -->
@@ -40,9 +42,23 @@
                 <h3 id="total"></h3>
        
            </div>
-            <button id="complete-btn">Complete order</button>
+
+            <button id="complete-btn" data-button="completeOrderBtn">Complete order</button>
+
         </div>
 
+            <!-- MODAL AFTER CLICKING COMPLETE ORDER BUTTON -->
+
+            <div id="modal-container" class="hidden">
+                <h3>Enter card details</h3>
+                <form action="submit" id="payment">
+                    <input type="text" placeholder="Enter your name">
+                    <input type="text" placeholder="Enter card number">
+                    <input type="text" placeholder="Enter CVV">
+                    <button>Pay</button>
+                </form>
+
+            </div>
     </main>
     <script src="/index.js" type="module"></script>
 </body>
