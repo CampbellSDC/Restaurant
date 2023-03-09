@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-
+    
     <main class="main-container">
         <header class="main-header">
             <h1>Jimmy's Diner</h1>
@@ -21,29 +21,27 @@
             
                 <!-- MENU ITEMS GO HERE FROM JS -->
             
-            <div id="your-order" class="your-order">
-                <h2>Your order</h2>
+            
+            
+        </section>
 
-                <div id="ordered-items">
-                    <div id="item">
-                        <h3 id="order-item">Pizza</h3>
-                        <button id="remove-btn">remove</button>
-                        
-                    </div>
+        <div id="your-order" class="checkout-order hidden">
+            <h2>Your order</h2>
+            <div id="ordered-items">
 
-                    <h4 id="item-price">$14</h4>
-                </div>
-
-                <div id="total-price">
-                    <h2>Total price:</h2>
-                    <p id="total"></p>
-
-                </div>
-
-                <button id="complete-btn">Complete order</button>
+                <!-- CHECKOUT ITEMS GO HERE -->
 
             </div>
-        </section>
+
+            
+
+            <div id="total-price">
+                <h2>Total price:</h2>
+                <h3 id="total"></h3>
+       
+           </div>
+            <button id="complete-btn">Complete order</button>
+        </div>
 
     </main>
     <script src="/index.js" type="module"></script>

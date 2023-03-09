@@ -13,11 +13,12 @@ body {
     font-family: 'Smythe', cursive;
 }
 
+/* MAIN STYLING */
+
 .main-container {
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     margin: auto;
     border: 1px solid red;
 }
@@ -56,27 +57,38 @@ body {
     margin-left: 2rem;
 }
 
-.your-order {
+
+
+.checkout-order {
     
-    max-width: 90%;
+    min-width: 90%;
     margin: auto;
 }
-.your-order > h2{
+.checkout-order > h2{
     text-align: center;
 
 }
 
-#item {
-    display: flex;
-
+.hidden {
+    display: none;
 }
 
 #ordered-items{
     border-bottom: 2px solid black;
+   
+    justify-content: space-between;
+}
+
+#order-line-item {
     display: flex;
     justify-content: space-between;
 }
 
-.hidden {
-    display: none;
+#item {
+    display: flex;
+}
+
+#total-price {
+    display: flex;
+    justify-content: space-between;
 }
