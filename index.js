@@ -62,43 +62,54 @@ function renderOrder(){
     let orderHtml = ''
     let multipleItemHtml = ''
     const item = document.getElementById('item')
-
-    // how to append html so it doens't continue listing out order items
-    // i.e. - Pizza  X  3          $28
-
-   
-        
-        itemsOrdered.forEach(({name, price}) => {
+    
+    
+    itemsOrdered.forEach(({name, price}) => {
         
             orderHtml += `
             <div id="order-line-item" >
             <div id='item'>
                 <h2>${name}</h2>
                 <button class="remove-btn">remove</button>
+                
             </div>
     
             <h3>$${price}</h3>
             </div>
             `
+
+           
+            
         })
      
+        checkoutItems.classList.remove('hidden')
+        itemNames.innerHTML = orderHtml
     
-    
-        
-        
-
-       
-        
-    
-    
-    
-
-   checkoutItems.classList.remove('hidden')
-    itemNames.innerHTML = orderHtml
-    console.log(itemsOrdered)
     getTotalPrice()
+    renderMultiple()
 }   
 
+
+
+
+function renderMultiple(){
+    let itemTotal = document.getElementById('item')
+    let itemQuantity = ''
+    itemsOrdered.forEach(({name}) => {
+        
+        if(Object.values(orderQuantity) > 1){
+            
+            itemQuantity = `
+            <h3>X ${Object.values(orderQuantity)}</h3>
+            `
+            itemTotal.innerHTML += itemQuantity
+            console.log(itemTotal)
+        }
+
+        
+
+    })
+}
 
 
 function getTotalPrice()  {
