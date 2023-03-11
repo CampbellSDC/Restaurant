@@ -61,82 +61,64 @@ function newOrderItems(itemId) {
 
 function renderOrder(){
     
-
-    
     let orderHtml = ''
     let multipleItemHtml = ''
     const item = document.getElementById('item')
+    let total = 0
     
-    
-        itemsOrdered.forEach(({name, price}) => {
-        
-            orderHtml += `
-            <div id="order-line-item" >
+    itemsOrdered.forEach(({name, price}) => {
+        const quantity = orderQuantity[name]
+        let itemTotalPrice = price * orderQuantity[name]
+        total += itemTotalPrice
+        orderHtml += `
+        <div id="order-line-item" >
             <div id='item'>
                 <h2>${name}</h2>
                 <button class="remove-btn">remove</button>
-                
+                ${quantity > 1 ? `<h3 class="multiple-items"> X ${quantity}</h3>` : ''}
+               
             </div>
     
-            <h3>$${price}</h3>
-            </div>
-            `
-        })
+            <h3>$${itemTotalPrice}</h3>
+        </div>
+        `
+    })
         
-        checkoutItems.classList.remove('hidden')
-        itemNames.innerHTML = orderHtml
-    
+    checkoutItems.classList.remove('hidden')
+    itemNames.innerHTML = orderHtml
     getTotalPrice()
-    renderMultiple()
-
-}   
-
-
-// TRYING TO APPEND THE ITEM TO INCLUDE 
-
-function renderMultiple(){
-    let itemTotal = document.getElementById('item')
-    let itemQuantity = ''
-    
-        for(let item in orderQuantity){
-            
-            if(`${orderQuantity[item]}` > 1){
-
-                itemQuantity = `
-                <h3>X ${orderQuantity[item]}</h3>
-                `
-                itemTotal.innerHTML += itemQuantity
-
-                console.log(itemTotal.innerHTML)
-            }
-        }
+   
 }
 
+
+
+
+
+
 function getTotalPrice()  {
+    let total = 0
     let itemTotal = document.getElementById('item')
     console.log(itemsOrdered)
     for(let i = 0; i<itemsOrdered.length; i++){
+        for(let j =0; j < Object.keys(orderQuantity).length; j++){
+            if(itemsOrdered[i].name === Object.keys(orderQuantity)[j]){
+                let sumTotal = itemsOrdered[i].price * Object.values(orderQuantity)[j]
+                total += sumTotal
+                const priceElements = document.querySelectorAll('[data-name="${itemsOrdered[i].name .price')
 
-        console.log(JSON.stringify(Object.keys(orderQuantity)[i]))
-
-        if(JSON.stringify(itemsOrdered[i].name) == JSON.stringify(Object.keys(orderQuantity)[i])){
-
-            let sumTotal = itemsOrdered[i].price * Object.values(orderQuantity)
-           console.log(sumTotal)
-
-           const total = document.getElementById('total')
-           
-           total.textContent =`
-           $${sumTotal}
-       ` 
-
-           
-           
+                priceElements.forEach(element => {
+                    element.textContent = `
+                        $${sumTotal}
+                    `
+                })
+            }
         }
-        
     }
    
-   
+   const totalElement = document.getElementById('total')
+   totalElement.textContent =  `
+    $${total}
+   `
     
     
 }
