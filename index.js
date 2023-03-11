@@ -82,31 +82,17 @@ function renderOrder(){
             </div>
             `
         })
-
-    
-
-    
-        renderMultiple()
-    
         
-
-     
-    
-   
-       
-    
-    
-     
         checkoutItems.classList.remove('hidden')
         itemNames.innerHTML = orderHtml
     
     getTotalPrice()
-    
+    renderMultiple()
 
 }   
 
 
-
+// TRYING TO APPEND THE ITEM TO INCLUDE 
 
 function renderMultiple(){
     let itemTotal = document.getElementById('item')
@@ -115,7 +101,7 @@ function renderMultiple(){
         for(let item in orderQuantity){
             
             if(`${orderQuantity[item]}` > 1){
-                
+
                 itemQuantity = `
                 <h3>X ${orderQuantity[item]}</h3>
                 `
