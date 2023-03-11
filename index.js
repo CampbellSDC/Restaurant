@@ -57,14 +57,18 @@ function newOrderItems(itemId) {
 }
 
 
+
+
 function renderOrder(){
+    
+
     
     let orderHtml = ''
     let multipleItemHtml = ''
     const item = document.getElementById('item')
     
     
-    itemsOrdered.forEach(({name, price}) => {
+        itemsOrdered.forEach(({name, price}) => {
         
             orderHtml += `
             <div id="order-line-item" >
@@ -77,16 +81,28 @@ function renderOrder(){
             <h3>$${price}</h3>
             </div>
             `
-
-           
-            
         })
+
+    
+
+    
+        renderMultiple()
+    
+        
+
+     
+    
+   
+       
+    
+    
      
         checkoutItems.classList.remove('hidden')
         itemNames.innerHTML = orderHtml
     
     getTotalPrice()
-    renderMultiple()
+    
+
 }   
 
 
@@ -95,31 +111,47 @@ function renderOrder(){
 function renderMultiple(){
     let itemTotal = document.getElementById('item')
     let itemQuantity = ''
-    itemsOrdered.forEach(({name}) => {
-        
-        if(Object.values(orderQuantity) > 1){
+    
+        for(let item in orderQuantity){
             
-            itemQuantity = `
-            <h3>X ${Object.values(orderQuantity)}</h3>
-            `
-            itemTotal.innerHTML += itemQuantity
-            console.log(itemTotal)
+            if(`${orderQuantity[item]}` > 1){
+                
+                itemQuantity = `
+                <h3>X ${orderQuantity[item]}</h3>
+                `
+                itemTotal.innerHTML += itemQuantity
+
+                console.log(itemTotal.innerHTML)
+            }
         }
-
-        
-
-    })
 }
 
-
 function getTotalPrice()  {
-    let total = document.getElementById('total')
-    const sum = itemsOrdered.reduce((price, total)=> price + total.price, 0 )
+    let itemTotal = document.getElementById('item')
+    console.log(itemsOrdered)
+    for(let i = 0; i<itemsOrdered.length; i++){
 
-    total.textContent =`
-        $${sum}
-    ` 
+        console.log(JSON.stringify(Object.keys(orderQuantity)[i]))
 
+        if(JSON.stringify(itemsOrdered[i].name) == JSON.stringify(Object.keys(orderQuantity)[i])){
+
+            let sumTotal = itemsOrdered[i].price * Object.values(orderQuantity)
+           console.log(sumTotal)
+
+           const total = document.getElementById('total')
+           
+           total.textContent =`
+           $${sumTotal}
+       ` 
+
+           
+           
+        }
+        
+    }
+   
+   
+    
     
 }
 
