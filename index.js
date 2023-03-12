@@ -61,12 +61,10 @@ function newOrderItems(itemId) {
   })[0];
 
   if (itemsOrdered.includes(targetItem)) {
-    //If order basket already contains the selected item, no need to add to basket just increment the quantity
-
-    // remove button will need to decrement this count and update totals
+    
     orderQuantity[targetItem.name] += 1;
   } else {
-    //If order basket does not contain the selected item then set quantity to one and add to basket
+    
     orderQuantity[targetItem.name] = 1;
     itemsOrdered.push(targetItem);
   }
