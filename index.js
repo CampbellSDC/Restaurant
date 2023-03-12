@@ -6,6 +6,8 @@ const menuItemContainer = document.getElementById('hero-container')
 const checkoutItems = document.getElementById('your-order')
 const itemNames = document.getElementById('ordered-items')
 
+
+
 const orderQuantity = {}
 
 let itemsOrdered = []
@@ -17,8 +19,9 @@ document.addEventListener('click', function(e){
    if(e.target.dataset.button === '0' || e.target.dataset.button === '1' || e.target.dataset.button === '2'){
         newOrderItems(e.target.dataset.button)
     }
-    else if(e.target.dataset.button === "removeBtn"){
-
+    else if(e.target.dataset.button === "removeBtn") {
+        const itemId = e.target.closest('#order-line-item').dataset.id
+        removeBtn(itemId)
     }
     else if(e.target.dataset.button === "completeOrderBtn"){
         completeOrder()
@@ -66,15 +69,15 @@ function renderOrder(){
     const item = document.getElementById('item')
     let total = 0
     
-    itemsOrdered.forEach(({name, price}) => {
+    itemsOrdered.forEach(({name, price, id}) => {
         const quantity = orderQuantity[name]
         let itemTotalPrice = price * orderQuantity[name]
         total += itemTotalPrice
         orderHtml += `
-        <div id="order-line-item" >
+        <div id="order-line-item" data-id="${id}" >
             <div id='item'>
                 <h2>${name}</h2>
-                <button class="remove-btn">remove</button>
+                <button class="remove-btn" data-button="removeBtn">remove</button>
                 ${quantity > 1 ? `<h3 class="multiple-items"> X ${quantity}</h3>` : ''}
                
             </div>
@@ -96,15 +99,20 @@ function renderOrder(){
 
 
 function getTotalPrice()  {
+
     let total = 0
     let itemTotal = document.getElementById('item')
-    console.log(itemsOrdered)
+
     for(let i = 0; i<itemsOrdered.length; i++){
+
         for(let j =0; j < Object.keys(orderQuantity).length; j++){
+
             if(itemsOrdered[i].name === Object.keys(orderQuantity)[j]){
+
                 let sumTotal = itemsOrdered[i].price * Object.values(orderQuantity)[j]
                 total += sumTotal
-                const priceElements = document.querySelectorAll('[data-name="${itemsOrdered[i].name .price')
+                const priceElements = document.querySelectorAll(`[data-name="${itemsOrdered[i].name}"] [data-price="${itemsOrdered[i].price}"]`)
+
 
                 priceElements.forEach(element => {
                     element.textContent = `
@@ -120,6 +128,39 @@ function getTotalPrice()  {
     $${total}
    `
     
+    
+}
+
+// REMOVE ITEM FROM ORDER LIST
+
+
+function removeBtn(itemId){
+    
+    
+    /* One issue I had here was that the ItemId parameter was given as a string
+    while the item.id below was returned as a number, and I was trying to return
+    two items with strict equality. Changing it to loose equality fixed the issue
+    */
+    const targetItem = menuArray.filter((item)=>{
+        return item.id == itemId
+        
+    })[0]
+
+    
+
+    if(itemsOrdered.includes(targetItem) >= 0){
+        
+        orderQuantity[targetItem.name]--
+
+        if(orderQuantity[targetItem.name] === 0){
+            itemsOrdered = itemsOrdered.filter(item => item !== targetItem)
+        }
+        renderOrder()
+        
+        
+    }
+   
+
     
 }
 
