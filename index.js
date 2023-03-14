@@ -34,7 +34,8 @@ function completeOrder() {
 }
 
 
-payBtn.addEventListener('click', function(){
+payBtn.addEventListener('click', function(e){
+    
     modal.classList.add('hidden')
     const fullName = name.value
     itemNames.classList.add('hidden')
@@ -91,11 +92,7 @@ function renderOrder() {
             <div id='item'>
                 <h2>${name}</h2>
                 <button class="remove-btn" data-button="removeBtn">remove</button>
-                ${
-                  quantity > 1
-                    ? `<h3 class="multiple-items"> X ${quantity}</h3>`
-                    : ""
-                }
+                ${quantity > 1 ? `<h3 class="multiple-items"> X ${quantity}</h3>` : ""}
                
             </div>
     

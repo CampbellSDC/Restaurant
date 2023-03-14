@@ -47,16 +47,26 @@
 
         </div>
 
-            <!-- MODAL AFTER CLICKING COMPLETE ORDER BUTTON -->
+            <!-- MODAL AFTER CLICKING COMPLETE ORDER BUTTON 
+            
+            id="payment"
+            id="payBtn"-->
 
             <div id="modal-container" class="hidden">
                 <h3>Enter card details</h3>
-                <form action="submit" id="payment">
-                    <input id='name' type="text" placeholder="Enter your name" required>
-                    <input type="text" placeholder="Enter card number" required>
-                    <input type="text" placeholder="Enter CVV" required>
-                    <button id="payBtn" type="button">Pay</button>
-                </form>
+                <form action="" method="POST" id="payment" >
+                    
+                    <input type="text" id="name" name="full-name" placeholder="Name" required="required">
+                  
+                    
+                    <input type="text" id="credit-card" name="credit-card" placeholder="Credit Card Number" required="required">
+                  
+                    
+                    <input type="text" id="cvv" name="cvv" placeholder="CVV" required="required">
+                  
+                   <input type="submit" id="payBtn" value="Pay">
+                  </form>
+                  
 
             </div>
     </main>
