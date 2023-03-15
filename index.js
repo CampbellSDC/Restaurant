@@ -7,6 +7,7 @@ const itemNames = document.getElementById("ordered-items");
 const modal = document.getElementById('modal-container')
 const payBtn = document.getElementById('payBtn')
 const name = document.getElementById('name')
+const paymentForm = document.getElementById('payment')
 
 const orderQuantity = {};
 
@@ -34,12 +35,16 @@ function completeOrder() {
 }
 
 
-payBtn.addEventListener('click', function(e){
-    
-    modal.classList.add('hidden')
-    const fullName = name.value
-    itemNames.classList.add('hidden')
-    let thankYouNote = ''
+//FORM PAYMENT SUBMISSION
+
+paymentForm.addEventListener('submit', function(e){
+    e.preventDefault()
+
+    if(paymentForm.checkValidity()){
+      modal.classList.add('hidden')
+      const fullName = name.value
+      itemNames.classList.add('hidden')
+      let thankYouNote = ''
 
     thankYouNote = `
     <div class='thank-you-note'>
@@ -50,6 +55,12 @@ payBtn.addEventListener('click', function(e){
     `
 
     checkoutItems.innerHTML = thankYouNote
+
+    }
+    else {
+      e.target.reportValidity()
+    }
+    
     
 
 
