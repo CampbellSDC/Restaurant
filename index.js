@@ -82,7 +82,7 @@ function newOrderItems(itemId) {
   }
 
   renderOrder();
-  console.log(orderQuantity);
+  
 }
 
 
